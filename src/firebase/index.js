@@ -3,13 +3,12 @@ import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyD6pUr-8dJofuRBQA5mHOzMbjwSc0NL23w",
-    authDomain: "ecommerce-coder-6d11b.firebaseapp.com",
-    projectId: "ecommerce-coder-6d11b",
-    storageBucket: "ecommerce-coder-6d11b.appspot.com",
-    messagingSenderId: "1077989644874",
-    appId: "1:1077989644874:web:f34b0fbac31ccd1c01e4b3",
-    measurementId: "G-GBMZD82FLZ"
+    apiKey: "AIzaSyBRjZIewZ99G7kXPIRnVPZudwHNsVqlCZc",
+    authDomain: "ecommerce-romero.firebaseapp.com",
+    projectId: "ecommerce-romero",
+    storageBucket: "ecommerce-romero.appspot.com",
+    messagingSenderId: "82948182374",
+    appId: "1:82948182374:web:9c0feb849a55400d82f8a7"
 };
 
 const app = firebase.initializeApp(firebaseConfig);

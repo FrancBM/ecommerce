@@ -1,72 +1,47 @@
-import React, { useState, useEffect } from 'react';
-import { CssBaseline } from '@material-ui/core';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import React from "react";
+import './App.css';
 
-import { Navbar, Products, Cart } from './components';
-import { commerce } from './lib/commerce';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
 
-const App = () => {
-  const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState({});
+import NavBar from './components/NavBar.jsx';
+import ItemListContainer from './components/ItemListContainer';
+import ItemDetailContainer from './components/ItemDetailContainer';
+import Cart from "./components/Cart";
+import { Grid } from '@material-ui/core';
 
-  const fetchProducts = async () => {
-    const { data } = await commerce.products.list();
+import CartCustomProvider from './context/CartContext';
 
-    setProducts(data);
-  };
+const URL_PUBLIC = process.env.REACT_APP_API_URL
 
-  const fetchCart = async () => {
-    setCart(await commerce.cart.retrieve());
-  };
-
-  const handleAddToCart = async (productId, quantity) => {
-    const item = await commerce.cart.add(productId, quantity);
-
-    setCart(item.cart);
-  };
-
-  const handleUpdateCartQty = async (lineItemId, quantity) => {
-    const response = await commerce.cart.update(lineItemId, { quantity });
-
-    setCart(response.cart);
-  };
-
-  const handleRemoveFromCart = async (lineItemId) => {
-    const response = await commerce.cart.remove(lineItemId);
-
-    setCart(response.cart);
-  };
-
-  const handleEmptyCart = async () => {
-    const response = await commerce.cart.empty();
-
-    setCart(response.cart);
-  };
-
-  useEffect(() => {
-    fetchProducts();
-    fetchCart();
-  }, []);
-
-  const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
-
+function App() {
   return (
-    <Router>
-      <div style={{ display: 'flex' }}>
-        <CssBaseline />
-        <Navbar totalItems={cart.total_items} handleDrawerToggle={handleDrawerToggle} />
-        <Switch>
-          <Route exact path="/">
-            <Products products={products} onAddToCart={handleAddToCart} handleUpdateCartQty />
-          </Route>
-          <Route exact path="/cart">
-            <Cart cart={cart} onUpdateCartQty={handleUpdateCartQty} onRemoveFromCart={handleRemoveFromCart} onEmptyCart={handleEmptyCart} />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+    <CartCustomProvider>
+      <Grid container direction="column" style={{ backgroundColor: "#ebebeb" }}>
+        <Router basename={URL_PUBLIC}>
+          <NavBar />
+          <Switch>
+            <Route exact path="/">
+              <ItemListContainer />
+            </Route>
+            <Route exact path="/category/:categoryId">
+              <ItemListContainer />
+            </Route>
+
+            <Route exact path="/products/:productoId">
+              <ItemDetailContainer />
+            </Route>
+            <Route exact path="/cart">
+              <Cart />
+            </Route>
+          </Switch>
+        </Router>
+      </Grid>
+    </CartCustomProvider>
   );
-};
+}
 
 export default App;
