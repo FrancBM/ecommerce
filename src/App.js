@@ -10,6 +10,7 @@ import {
 import NavBar from './components/NavBar.jsx';
 import ItemListContainer from './components/ItemListContainer';
 import ItemDetailContainer from './components/ItemDetailContainer';
+import Footer from './components/Footer';
 import Cart from "./components/Cart";
 import { Grid } from '@material-ui/core';
 
@@ -38,6 +39,7 @@ function App() {
               <Cart />
             </Route>
           </Switch>
+          <Footer />
         </Router>
       </Grid>
     </CartCustomProvider>
