@@ -54,6 +54,7 @@ const ItemDetail = (element) => {
                         </Typography>
 
                         {showButton === true ? (
+                            //stock
                             <ItemCount stock={element.objeto.available_quantity} initial={1} onAdd={onAdd} id={element.objeto.title} count={count} setCount={setCount} />
                         ) : (
                             <Link to={`/cart`}>

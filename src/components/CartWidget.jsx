@@ -4,6 +4,7 @@ import { Badge } from '@material-ui/core';
 import { CartContext } from '../context/CartContext';
 
 const CartWidget = () => {
+    //context
     const { cartIndicator } = useContext(CartContext);
 
     return (

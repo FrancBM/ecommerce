@@ -13,6 +13,7 @@ export default function ItemDetailContainer() {
     let { productoId } = useParams();
 
     const getProduct = () => {
+        //BD
         const db = getFirestore();
         const itemCollection = db.collection("items").where('id', '==', productoId);
         itemCollection.get().then((querySnapshot) => {
