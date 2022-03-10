@@ -2,22 +2,22 @@ import React from "react";
 import Reloj from "./Reloj";
 
 export default class DateComponent extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state = { date: new Date()};
+        this.state = { date: new Date() };
     }
-    componentDidMount(){
-        this.temporizadorId = setInterval(()=>{ this.tick()} ,1000)
+    componentDidMount() {
+        this.temporizadorId = setInterval(() => { this.tick() }, 1000)
     }
-    componentWillUnmount(){
+    componentWillUnmount() {
         clearInterval(this.temporizadorId);
     }
-    tick(){
-        this.setState ({ date: new Date()});
+    tick() {
+        this.setState({ date: new Date() });
     }
-    render(){
-        return(
-            <Reloj date = {this.state.date}/>
+    render() {
+        return (
+            <Reloj date={this.state.date} />
         );
     }
 }
