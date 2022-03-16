@@ -12,6 +12,7 @@ import ItemListContainer from './components/ItemListContainer';
 import ItemDetailContainer from './components/ItemDetailContainer';
 import Footer from './components/Footer';
 import Cart from "./components/Cart";
+import { FormBuyContainer } from "./components/FormBuyContainer";
 import { Grid } from '@material-ui/core';
 
 import CartCustomProvider from './context/CartContext';
@@ -37,6 +38,9 @@ function App() {
             </Route>
             <Route exact path="/cart">
               <Cart />
+            </Route>
+            <Route exact path="/formBuy">
+              <FormBuyContainer />
             </Route>
           </Switch>
           <Footer />
